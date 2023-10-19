@@ -1,17 +1,49 @@
-﻿using DesafioFundamentos.Models;
+﻿using DesafioFundamentos.Helpers;
+using DesafioFundamentos.Models;
 
 // Coloca o encoding para UTF8 para exibir acentuação
 Console.OutputEncoding = System.Text.Encoding.UTF8;
-
+bool precoInicialValido = false;
+bool precoPorHoraValido = false;
+string s_precoInicial = "";
+string s_precoPorHora = "";
 decimal precoInicial = 0;
 decimal precoPorHora = 0;
 
-Console.WriteLine("Seja bem vindo ao sistema de estacionamento!\n" +
-                  "Digite o preço inicial:");
-precoInicial = Convert.ToDecimal(Console.ReadLine());
 
-Console.WriteLine("Agora digite o preço por hora:");
-precoPorHora = Convert.ToDecimal(Console.ReadLine());
+do 
+{
+    Console.Clear();
+    Console.WriteLine("Seja bem vindo ao sistema de estacionamento!\n" +
+                  "Digite o preço inicial:");
+    s_precoInicial = Console.ReadLine();
+    precoInicialValido = ValidatorHelper.ValidarPrecoInicial(s_precoInicial);
+    if (!precoInicialValido)
+    {
+        Console.WriteLine("Valor digitado não é aceito pelo sistema!");
+        Console.WriteLine("Pressione uma tecla para continuar");
+        Console.ReadKey();
+    }
+}
+while(!precoInicialValido);
+
+precoInicial = Convert.ToDecimal(s_precoInicial);
+
+do
+{
+    Console.Clear();
+    Console.WriteLine("Agora digite o preço por hora:");
+    s_precoPorHora = Console.ReadLine();
+    precoPorHoraValido = ValidatorHelper.ValidarPrecoHora(s_precoPorHora);
+    if (!precoPorHoraValido)
+    {
+        Console.WriteLine("Valor digitado não é aceito pelo sistema!");
+        Console.WriteLine("Pressione uma tecla para continuar");
+        Console.ReadKey();
+    }
+}
+while(!precoPorHoraValido);
+precoPorHora = Convert.ToDecimal(s_precoPorHora);
 
 // Instancia a classe Estacionamento, já com os valores obtidos anteriormente
 Estacionamento es = new Estacionamento(precoInicial, precoPorHora);
