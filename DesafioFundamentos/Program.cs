@@ -12,8 +12,7 @@ decimal precoPorHora = 0;
 
 
 do 
-{
-    Console.Clear();
+{  
     Console.WriteLine("Seja bem vindo ao sistema de estacionamento!\n" +
                   "Digite o preço inicial:");
     s_precoInicial = Console.ReadLine();
@@ -23,6 +22,7 @@ do
         Console.WriteLine("Valor digitado não é aceito pelo sistema!");
         Console.WriteLine("Pressione uma tecla para continuar");
         Console.ReadKey();
+        Console.Clear();
     }
 }
 while(!precoInicialValido);
@@ -31,7 +31,6 @@ precoInicial = Convert.ToDecimal(s_precoInicial);
 
 do
 {
-    Console.Clear();
     Console.WriteLine("Agora digite o preço por hora:");
     s_precoPorHora = Console.ReadLine();
     precoPorHoraValido = ValidatorHelper.ValidarPrecoHora(s_precoPorHora);
@@ -39,7 +38,8 @@ do
     {
         Console.WriteLine("Valor digitado não é aceito pelo sistema!");
         Console.WriteLine("Pressione uma tecla para continuar");
-        Console.ReadKey();
+        Console.ReadKey();        
+        Console.Clear();
     }
 }
 while(!precoPorHoraValido);
